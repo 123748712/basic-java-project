@@ -1,4 +1,4 @@
-package oJackGyuo;
+package test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 public class OJackGyuoMain {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-
 		List<Article> articles = new ArrayList<>();
 		List<Customer> customers = new ArrayList<>();
 		List<QnA> qnAList = new ArrayList<>();
@@ -36,129 +35,98 @@ public class OJackGyuoMain {
 			}
 			switch (homeMenu) {
 			case 1:
+				System.out.println("오작교 회원가입에 오신걸 환영합니다.");
+
+				boolean joinable = false;
+				boolean joinRun = true;
 				String customerId = null;
-				boolean joinRun = false;
-				boolean homeRun = true;
-				while (homeRun) {
-					System.out.print("아이디를 입력하세요 (영어,숫자 사용하여 3~16자 입력)> ");
-					customerId = "^$";
-					String idre = "^[a-zA-Z0-9]{3,16}$";
-					Pattern re1 = Pattern.compile(idre);
-					Matcher re2 = re1.matcher(customerId);
+				while (joinRun) {
+					System.out.print("아이디를 입력하세요 > ");
+					customerId = scanner.nextLine();
 
-					while (re2.matches() == false) {
-						customerId = scanner.nextLine();
-						idre = "^[a-zA-Z0-9]{3,16}$";
-						re1 = Pattern.compile(idre);
-						re2 = re1.matcher(customerId);
-						if (re2.matches() == false) {
-							System.out.println("중복된 아이디가 있거나 올바른 형식이 아닙니다.\t");
-							System.out.print("아이디를 재입력해주시오>");
-						}
-
-						for (Customer customer : customers) {
-							if (customer.getCustomerId().equals(customerId)) {
-								joinRun = true;
-								break;
-							}
-						}
-						if (joinRun) {
-							System.out.println("이미 존재하는 아이디입니다.");
-							continue;
-						}
-					}
-
-					System.out.println();
-					System.out.println("비밀번호는 영문자+숫자+특수문자를 포함하여 8~20자리로 작성하여주세요.");
-					System.out.print("비밀번호를 입력하세요 > ");
-					String customerPw = "";
-					String pwnc = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&])[A-Za-z[0-9]$@$!%*#?&]{8,20}$";
-
-					Pattern pwnc1 = Pattern.compile(pwnc);
-					Matcher pwnc2 = pwnc1.matcher(customerPw);
-
-					while (pwnc2.matches() == false) {
-						customerPw = scanner.nextLine();
-						pwnc = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&])[A-Za-z[0-9]$@$!%*#?&]{8,20}$";
-						pwnc1 = Pattern.compile(pwnc);
-						pwnc2 = pwnc1.matcher(customerPw);
-						if (pwnc2.matches() == false) {
-							System.out.println("올바른 비밀번호 형식이 아닙니다.");
-							System.out.println("다시 입력하여 주십시오.");
-						}
-					}
-					while (true) {
-						System.out.println("비밀번호를 다시 한번 더 입력해주세요 >");
-						String customerPwConform = scanner.nextLine();
-						if (!customerPw.equals(customerPwConform)) {
-							System.out.println("올바른 비밀번호 형식이 아닙니다.");
-							System.out.println("다시 입력하여 주십시오.");
-						} else {
+					for (Customer customer : customers) {
+						if (customer.getCustomerId().equals(customerId)) {
+							joinable = true;
 							break;
 						}
 					}
-
-					System.out.println("이름을 입력하시오>");
-					String name = scanner.nextLine();
-
-					int age;
-					try {
-						System.out.println("나이를 입력하시오> ");
-						age = Integer.parseInt(scanner.nextLine());
-					} catch (NumberFormatException e) {
-						System.out.println("나이는 숫자만 입력 가능합니다.");
+					if (joinable) {
+						System.out.println("이미 존재하는 아이디입니다.");
 						continue;
 					}
-
-					System.out.println("핸드폰 번호를 입력하시오(000-0000-0000 형식)>");// 정규식
-					String phone = " ";
-					String phonenc = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
-					Pattern phonenc1 = Pattern.compile(phonenc);
-					Matcher phonenc2 = phonenc1.matcher(phone);
-					while (phonenc2.matches() == false) {
-						phone = scanner.nextLine();
-						phonenc = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
-						phonenc1 = Pattern.compile(phonenc);
-						phonenc2 = phonenc1.matcher(phone);
-						if (phonenc2.matches() == false) {
-							System.out.println("전화번호 형식이 잘못되었습니다.");
-							System.out.println("다시 입력하여 주십시오.");
-						}
-					}
-					System.out.println("메일을 입력해주시오>");
-					String mail = scanner.nextLine();
-
-					System.out.println("주민번호");
-					String regno = scanner.nextLine();
-					System.out.println("성별을 입력해주시오>");
-					String jender = scanner.nextLine();
-
-					System.out.println("결혼 여부를 입력해주시오>");
-					String marry = scanner.nextLine();
-
-					System.out.println("우편번호를 입력해주시오>");
-					int post = Integer.parseInt(scanner.nextLine());
-
-					System.out.println("주소를 입력해주시오>");
-					String add = scanner.nextLine();
-
-					System.out.println("상세 주소를 입력해주시오>");
-					String dao = scanner.nextLine();
-
-					System.out.println("직업을 입력해주세요>");
-					String job = scanner.nextLine();
-
-					System.out.println("아이디 찾기 힌트(별명을 입력해주시오)>");
-					String hint = scanner.nextLine();
-
-					Customer customer = new Customer(customerId, customerPw, name, age, phone, mail, regno, jender,
-							marry, post, add, dao, job, hint);
-					
-					customers.add(customer);
-					
-					System.out.println("");
 					break;
 				}
+
+				String customerPw = null;
+				String checkCustomerPw = null;
+				while (true) {
+					System.out.print("비밀번호를 입력하세요 > ");
+					customerPw = scanner.nextLine();
+
+					System.out.print("비밀번호를 다시 한번 더 입력해주세요 >");
+					checkCustomerPw = scanner.nextLine();
+
+					if (!customerPw.equals(checkCustomerPw)) {
+						System.out.println("비밀번호가 일치하지 않습니다.");
+						continue;
+					}
+					break;
+				}
+
+				System.out.print("이름을 입력하세요 >");
+				String name = scanner.nextLine();
+
+				int age;
+				try {
+					System.out.print("나이를 입력하세요 > ");
+					age = Integer.parseInt(scanner.nextLine());
+				} catch (NumberFormatException e) {
+					System.out.println("나이는 숫자만 입력 가능합니다.");
+					continue;
+				}
+
+				System.out.print("핸드폰 번호를 입력하세요 > ");
+				String phone = scanner.nextLine();
+
+				System.out.print("메일을 입력하세요 > ");
+				String mail = scanner.nextLine();
+
+				System.out.print("주민등록번호를 입력해주세요 (-까지 같이 입력해주세요.) > ");
+				String regno = scanner.nextLine();
+
+				System.out.print("성별을 입력하세요 (남/여) > ");
+				String jender = scanner.nextLine();
+
+				System.out.print("결혼 여부를 입력하세요 (초혼/재혼) > ");
+				String marry = scanner.nextLine();
+
+				int post;
+				try {
+					System.out.print("우편번호를 입력하세요 > ");
+					post = Integer.parseInt(scanner.nextLine());
+				} catch (NumberFormatException e) {
+					System.out.println("우편번호는 숫자만 입력 가능합니다.");
+					continue;
+				}
+
+				System.out.print("주소를 입력하세요 > ");
+				String add = scanner.nextLine();
+
+				System.out.print("상세 주소를 입력하세요 > ");
+				String dao = scanner.nextLine();
+
+				System.out.print("직업을 입력해주세요 > ");
+				String job = scanner.nextLine();
+
+				System.out.print("아이디 찾기 힌트(별명을 입력해주시오) > ");
+				String hint = scanner.nextLine();
+
+				Customer customer = new Customer(customerId, customerPw, name, age, phone, mail, regno, jender, marry,
+						post, add, dao, job, hint);
+				customers.add(customer);
+
+				System.out.println(customer.getName() + "님 아이디를 생성하였습니다.");
+
 				break;
 			case 2:
 				System.out.println("로그인 ID > ");
@@ -171,7 +139,7 @@ public class OJackGyuoMain {
 						foundCustomer = customer1;
 					}
 				}
-				if (foundCustomer == null) {
+				if(foundCustomer == null) {
 					System.out.println("존재하지 않는 아이디입니다.");
 					continue;
 				}
@@ -218,113 +186,46 @@ public class OJackGyuoMain {
 
 						System.out.println("성공적으로 쪽지를 보냈습니다.");
 
-						NoteBox noteBox = new NoteBox(loginedCustomer.getCustomerId(), sendId, nBTitle, nBBody);
+						NoteBox noteBox = new NoteBox(null, sendId, nBTitle, nBBody);
 
 						noteBoxs.add(noteBox);
-
 						break;
 					case 2:
-						System.out.println("=======================");
-						System.out.println("1. 받은 쪽지 / 2. 보낸 쪽지");
-						System.out.println("=======================");
-						System.out.print("번호 입력 > ");
-						int nTNum = Integer.parseInt(scanner.nextLine());
-						switch (nTNum) {
-						case 1:
-							for (NoteBox noteBox1 : noteBoxs) {
-								System.out.println(noteBox1.getnBTitle());
-							}
-							break;
-						case 2:
-							break;
-						}
+						break;
 					case 3:
 						break;
 					case 4:
 						System.out.println("오작교 공지사항 입니다.");
 						boolean serviceRun = true;
 						while (serviceRun) {
-							System.out.println("========================");
-							System.out.println("1. 공지사항 / 2. 홈으로 이동");
-							System.out.println("========================");
+							System.out.println("=============================================");
+							System.out.println("1. 공지사항 게시판 / 2. 홈으로 이동 / 0. 공지사항 입력");
+							System.out.println("=============================================");
 							System.out.print("번호 입력 > ");
 							int serviceNum = Integer.parseInt(scanner.nextLine());
 							switch (serviceNum) {
 							case 1:
-								System.out.println("===============================================================");
-								System.out.println("1. 공직사항 게시판 / 2. 공지사항 등록 / 3. 공지사항 수정 / 4. 공지사항 삭제");
-								System.out.println("===============================================================");
-								System.out.print("번호 입력 > ");
-								int articleNum = Integer.parseInt(scanner.nextLine());
-								switch (articleNum) {
-								case 1:
-									System.out.println("제목");
-									for (Article article : articles) {
-										System.out.println(article.getTitle());
-									}
-									break;
-								case 2:
-									System.out.print("제목 > ");
-									String title = scanner.nextLine();
-									System.out.print("내용 > ");
-									String body = scanner.nextLine();
+								System.out.println("공지사항 게시판입니다.");
 
-									System.out.println("공지사항이 업로드 되었습니다.");
-									Article article = new Article(title, body);
-									articles.add(article);
-									break;
-								case 3:
-									System.out.println("수정할 게시글의 번호를 입력해주세요.");
-									System.out.print("번호입력 > ");
-									int foundId = Integer.parseInt(scanner.nextLine());
-									Article foundArticle = null;
-
-									for (Article article1 : articles) {
-										if (article1.id == foundId) {
-											foundArticle = article1;
-										}
-									}
-									if (foundArticle == null) {
-										System.out.println("검색된 게시글이 존재하지 않습니다.");
-										continue;
-									}
-
-									System.out.print("제목 > ");
-									title = scanner.nextLine();
-									System.out.print("내용 > ");
-									body = scanner.nextLine();
-
-									foundArticle.setTitle(title);
-									foundArticle.setBody(body);
-
-									System.out.println("공지사항이 수정 되었습니다.");
-									break;
-								case 4:
-									System.out.println("삭제할 게시글의 번호를 입력해주세요.");
-									System.out.print("번호 입력 > ");
-									foundId = Integer.parseInt(scanner.nextLine());
-
-									foundArticle = null;
-
-									for (Article article1 : articles) {
-										if (article1.id == foundId) {
-											foundArticle = article1;
-										}
-									}
-									if (foundArticle == null) {
-										System.out.println("검색된 게시글이 존재하지 않습니다.");
-										continue;
-									}
-									articles.remove(foundArticle);
-									System.out.println("공지사항이 삭제되었습니다.");
-									break;
-								default:
-									System.out.println("번호를 잘못 입력하셨습니다. 다시 입력해주세요.");
-									break;
+								System.out.println("제목");
+								for (Article article : articles) {
+									System.out.println(article.getTitle());
 								}
+
+								break;
 							case 2:
 								System.out.println("홈으로 이동합니다.");
 								serviceRun = false;
+								break;
+							case 0:
+								System.out.print("제목 > ");
+								String title = scanner.nextLine();
+								System.out.print("내용 > ");
+								String body = scanner.nextLine();
+
+								System.out.println("공지사항이 업로드 되었습니다.");
+								Article article = new Article(title, body);
+								articles.add(article);
 								break;
 							default:
 								System.out.println("번호를 잘못 입력하셨습니다. 다시 입력해주세요.");
@@ -344,29 +245,6 @@ public class OJackGyuoMain {
 				}
 				break;
 			case 3:
-				foundCustomer = null;
-				System.out.println("회원 정보를 입력해주세요.");
-				System.out.print("이름 > ");
-				String name = scanner.nextLine();
-
-				for (Customer customer1 : customers) {
-					if (customer1.getName().equals(name)) {
-						foundCustomer = customer1;
-					}
-				}
-				if (foundCustomer == null) {
-					System.out.println("회원 정보를 찾을 수 없습니다.");
-					continue;
-				}
-				System.out.println("핸드폰 번호를 입력해주세요. (-포함)");
-				System.out.print("핸드폰 번호 > ");
-				String phone = scanner.nextLine();
-
-				if (foundCustomer.getPhone().equals(phone)) {
-					System.out.println("본인 인증이 완료되었습니다.");
-					System.out.println("아이디 > " + foundCustomer.getCustomerId());
-					System.out.println("비밀번호 > " + foundCustomer.getCustomerPw());
-				}
 				break;
 			case 9:
 				System.out.println("고객센터 화면입니다.");
@@ -408,16 +286,13 @@ public class OJackGyuoMain {
 }
 
 class Article {
-	static int index;
 	String title;
 	String body;
 	int id;
 
 	public Article(String title, String body) {
-		index++;
 		this.title = title;
 		this.body = body;
-		this.id = index;
 	}
 
 	public String getTitle() {
@@ -434,14 +309,6 @@ class Article {
 
 	public void setBody(String body) {
 		this.body = body;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 }
 
