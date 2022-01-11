@@ -40,7 +40,7 @@ public class OJackGyuoMain {
 				boolean joinRun = false;
 				boolean homeRun = true;
 				while (homeRun) {
-					System.out.print("아이디를 입력하세요 (영어,숫자 사용하여 3~16자 입력)> ");
+					System.out.print("회원가입 ID (영문+숫자 3~16자리) > ");
 					customerId = "^$";
 					String idre = "^[a-zA-Z0-9]{3,16}$";
 					Pattern re1 = Pattern.compile(idre);
@@ -52,8 +52,8 @@ public class OJackGyuoMain {
 						re1 = Pattern.compile(idre);
 						re2 = re1.matcher(customerId);
 						if (re2.matches() == false) {
-							System.out.println("중복된 아이디가 있거나 올바른 형식이 아닙니다.\t");
-							System.out.print("아이디를 재입력해주시오>");
+							System.out.println("잘못된 형식입니다.");
+							System.out.print("회원가입 ID (영문+숫자 3~16자리) > ");
 						}
 
 						for (Customer customer : customers) {
@@ -69,8 +69,7 @@ public class OJackGyuoMain {
 					}
 
 					System.out.println();
-					System.out.println("비밀번호는 영문자+숫자+특수문자를 포함하여 8~20자리로 작성하여주세요.");
-					System.out.print("비밀번호를 입력하세요 > ");
+					System.out.print("회원가입 PW (영문+숫자+특수문자 8~20자리) > ");
 					String customerPw = "";
 					String pwnc = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&])[A-Za-z[0-9]$@$!%*#?&]{8,20}$";
 
@@ -83,34 +82,34 @@ public class OJackGyuoMain {
 						pwnc1 = Pattern.compile(pwnc);
 						pwnc2 = pwnc1.matcher(customerPw);
 						if (pwnc2.matches() == false) {
-							System.out.println("올바른 비밀번호 형식이 아닙니다.");
-							System.out.println("다시 입력하여 주십시오.");
+							System.out.println("잘못된 형식입니다.");
+							System.out.print("회원가입 PW (영문+숫자+특수문자 8~20자리) > ");
 						}
 					}
 					while (true) {
-						System.out.println("비밀번호를 다시 한번 더 입력해주세요 >");
+						System.out.println("회원가입 PW 확인 >");
 						String customerPwConform = scanner.nextLine();
 						if (!customerPw.equals(customerPwConform)) {
-							System.out.println("올바른 비밀번호 형식이 아닙니다.");
-							System.out.println("다시 입력하여 주십시오.");
+							System.out.println("잘못된 형식입니다.");
+							System.out.print("회원가입 PW 확인 (영문+숫자+특수문자 8~20자리) > ");
 						} else {
 							break;
 						}
 					}
 
-					System.out.println("이름을 입력하시오>");
+					System.out.println("이름 >");
 					String name = scanner.nextLine();
 
 					int age;
 					try {
-						System.out.println("나이를 입력하시오> ");
+						System.out.println("나이 > ");
 						age = Integer.parseInt(scanner.nextLine());
 					} catch (NumberFormatException e) {
 						System.out.println("나이는 숫자만 입력 가능합니다.");
 						continue;
 					}
 
-					System.out.println("핸드폰 번호를 입력하시오(000-0000-0000 형식)>");// 정규식
+					System.out.println("핸드폰 번호 (- 포함) >");
 					String phone = " ";
 					String phonenc = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
 					Pattern phonenc1 = Pattern.compile(phonenc);
@@ -121,41 +120,41 @@ public class OJackGyuoMain {
 						phonenc1 = Pattern.compile(phonenc);
 						phonenc2 = phonenc1.matcher(phone);
 						if (phonenc2.matches() == false) {
-							System.out.println("전화번호 형식이 잘못되었습니다.");
-							System.out.println("다시 입력하여 주십시오.");
+							System.out.println("잘못된 형식입니다.");
+							System.out.print("핸드폰 번호 (- 포함) >");
 						}
 					}
-					System.out.println("메일을 입력해주시오>");
+					System.out.println("메일 >");
 					String mail = scanner.nextLine();
 
-					System.out.println("주민번호");
+					System.out.println("주민등록번호 > ");
 					String regno = scanner.nextLine();
-					System.out.println("성별을 입력해주시오>");
+					System.out.println("성별 (남/여) >");
 					String jender = scanner.nextLine();
 
-					System.out.println("결혼 여부를 입력해주시오>");
+					System.out.println("결혼 여부 (초혼/재혼) >");
 					String marry = scanner.nextLine();
 
-					System.out.println("우편번호를 입력해주시오>");
+					System.out.println("우편번호 >");
 					int post = Integer.parseInt(scanner.nextLine());
 
-					System.out.println("주소를 입력해주시오>");
+					System.out.print("주소 >");
 					String add = scanner.nextLine();
 
-					System.out.println("상세 주소를 입력해주시오>");
+					System.out.print("상세주소 >");
 					String dao = scanner.nextLine();
 
-					System.out.println("직업을 입력해주세요>");
+					System.out.print("직업 >");
 					String job = scanner.nextLine();
 
-					System.out.println("아이디 찾기 힌트(별명을 입력해주시오)>");
+					System.out.print("별명 (회원정보찾기 힌트) > ");
 					String hint = scanner.nextLine();
 
 					Customer customer = new Customer(customerId, customerPw, name, age, phone, mail, regno, jender,
 							marry, post, add, dao, job, hint);
-					
+
 					customers.add(customer);
-					
+
 					System.out.println("");
 					break;
 				}
@@ -232,7 +231,9 @@ public class OJackGyuoMain {
 						switch (nTNum) {
 						case 1:
 							for (NoteBox noteBox1 : noteBoxs) {
-								System.out.println(noteBox1.getnBTitle());
+								if (noteBox1.getReciveId().equals(loginedCustomer.getCustomerId())) {
+									System.out.println(noteBox1.getnBTitle());
+								}
 							}
 							break;
 						case 2:
@@ -358,11 +359,11 @@ public class OJackGyuoMain {
 					System.out.println("회원 정보를 찾을 수 없습니다.");
 					continue;
 				}
-				System.out.println("핸드폰 번호를 입력해주세요. (-포함)");
-				System.out.print("핸드폰 번호 > ");
-				String phone = scanner.nextLine();
+				System.out.println("회원가입시 입력한 별명을 입력해주세요.");
+				System.out.print("힌트 입력 > ");
+				String hint = scanner.nextLine();
 
-				if (foundCustomer.getPhone().equals(phone)) {
+				if (foundCustomer.getHint().equals(hint)) {
 					System.out.println("본인 인증이 완료되었습니다.");
 					System.out.println("아이디 > " + foundCustomer.getCustomerId());
 					System.out.println("비밀번호 > " + foundCustomer.getCustomerPw());

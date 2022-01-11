@@ -2,14 +2,14 @@ package oJackGyuo;
 
 import java.util.Scanner;
 
-public class ScanUtil {
-
+public class ScannerUtil {
 	private static Scanner s = new Scanner(System.in);
-
+	
 	public static String nextLine() {
 		return s.nextLine();
 	}
-	public static int nextInt() {
+	
+	public static int nextint() {
 		return Integer.parseInt(s.nextLine());
 	}
 }

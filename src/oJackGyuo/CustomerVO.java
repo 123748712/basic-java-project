@@ -1,10 +1,11 @@
 package oJackGyuo;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-public class CustomerVO {
-	private String customerid;
-	private String customerpw;
+class CustomerVO {
+	private String customerId;
+	private String customerPw;
 	private String name;
 	private int age;
 	private String phone;
@@ -18,18 +19,16 @@ public class CustomerVO {
 	private String job;
 	private int ntqty;
 	private String hint;
-	private LocalDateTime informationdate;
+	private LocalDateTime informationDate;
 
 	public CustomerVO() {
-		
 	}
 
-
-	public CustomerVO(String customerid, String customerpw, String name, int age, String phone, String mail,
+	public CustomerVO(String customerId, String customerPw, String name, int age, String phone, String mail,
 			String regno, String jnder, String marry, int post, String address, String accurateaddress, String job,
 			String hint) {
-		this.customerid = customerid;
-		this.customerpw = customerpw;
+		this.customerId = customerId;
+		this.customerPw = customerPw;
 		this.name = name;
 		this.age = age;
 		this.phone = phone;
@@ -44,41 +43,20 @@ public class CustomerVO {
 		this.hint = hint;
 	}
 
-
-
-	public String getCustomerid() {
-		return customerid;
+	public String getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomerid(String customerid) {
-		this.customerid = customerid;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 
-	public String getMail() {
-		return mail;
+	public String getCustomerPw() {
+		return customerPw;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
-	
-	public String getRegno() {
-		return regno;
-	}
-
-
-	public void setRegno(String regno) {
-		this.regno = regno;
-	}
-
-
-	public String getcustomerpw() {
-		return customerpw;
-	}
-
-	public void setcustomerpw(String customerpw) {
-		this.customerpw = customerpw;
+	public void setCustomerPw(String customerPw) {
+		this.customerPw = customerPw;
 	}
 
 	public String getName() {
@@ -105,6 +83,21 @@ public class CustomerVO {
 		this.phone = phone;
 	}
 
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getRegno() {
+		return regno;
+	}
+
+	public void setRegno(String regno) {
+		this.regno = regno;
+	}
 
 	public String getJnder() {
 		return jnder;
@@ -170,24 +163,43 @@ public class CustomerVO {
 		this.hint = hint;
 	}
 
-	public LocalDateTime getInformationdate() {
-		return informationdate;
+	public LocalDateTime getInformationDate() {
+		return informationDate;
 	}
 
-	public void setInformationdate(LocalDateTime informationdate) {
-		this.informationdate = informationdate;
+	public void setInformationDate(LocalDateTime informationDate) {
+		this.informationDate = informationDate;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(accurateaddress, address, age, customerId, customerPw, hint, informationDate, jnder, job,
+				mail, marry, name, ntqty, phone, post, regno);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerVO other = (CustomerVO) obj;
+		return Objects.equals(accurateaddress, other.accurateaddress) && Objects.equals(address, other.address)
+				&& age == other.age && Objects.equals(customerId, other.customerId)
+				&& Objects.equals(customerPw, other.customerPw) && Objects.equals(hint, other.hint)
+				&& Objects.equals(informationDate, other.informationDate) && Objects.equals(jnder, other.jnder)
+				&& Objects.equals(job, other.job) && Objects.equals(mail, other.mail)
+				&& Objects.equals(marry, other.marry) && Objects.equals(name, other.name) && ntqty == other.ntqty
+				&& Objects.equals(phone, other.phone) && post == other.post && Objects.equals(regno, other.regno);
+	}
 
 	@Override
 	public String toString() {
-		return "CustomerVO [customerid=" + customerid + ", customerpw=" + customerpw + ", name=" + name + ", age=" + age
+		return "CustomerVO [customerId=" + customerId + ", customerPw=" + customerPw + ", name=" + name + ", age=" + age
 				+ ", phone=" + phone + ", mail=" + mail + ", regno=" + regno + ", jnder=" + jnder + ", marry=" + marry
 				+ ", post=" + post + ", address=" + address + ", accurateaddress=" + accurateaddress + ", job=" + job
-				+ ", ntqty=" + ntqty + ", hint=" + hint + ", informationdate=" + informationdate + "]";
+				+ ", ntqty=" + ntqty + ", hint=" + hint + ", informationDate=" + informationDate + "]";
 	}
-
-
-	}
-
-
+}
