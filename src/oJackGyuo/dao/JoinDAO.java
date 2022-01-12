@@ -21,7 +21,7 @@ public class JoinDAO {
 	private JoinDAO() {
 	}
 
-	public int insertMember(CustomerVO vo) throws Exception { // customer로 바꾸기
+	public int insertCustomer(CustomerVO vo) throws Exception { // customer로 바꾸기
 		DriverManager.registerDriver(new OracleDriver());
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "MarryWeb", "7777");
 		StringBuilder builder = new StringBuilder();

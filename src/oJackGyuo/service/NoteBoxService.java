@@ -13,16 +13,16 @@ public class NoteBoxService {
 
 	private static NoteBoxService instance;
 
-	public static NoteBoxService getInstance() { // 쪽지발송
+	public static NoteBoxService getInstance() { 
 		if (instance == null) {
 			instance = new NoteBoxService();
 		}
 		return instance;
 	}
 
-	List<NoteBoxVO> notes = new ArrayList<>();
 
-	public int noteSend() {
+	public static int noteSend() {
+		List<NoteBoxVO> notes = new ArrayList<>();
 		boolean sendRun = false;
 		while (true) {
 			System.out.print("받는분의 아이디 > ");
