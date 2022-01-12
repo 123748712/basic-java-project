@@ -30,7 +30,7 @@ public class NoteBoxService{
 		System.out.println("내용 > ");
 		String nBBody = ScannerUtil.nextLine();
 		
-		System.out.println("보낼 아이디 > ");
+		System.out.println("받는 아이디 > ");
 		String nBMember = ScannerUtil.nextLine();
 		if (noteBoxDAO.selectMemId(nBMember)) {
 			noteBoxDAO.insertNoteBox(new NoteBoxVO(nBTitle, nBBody, nBMember));

@@ -29,9 +29,10 @@ public class NoteBoxDAO {
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb",
 				"7777");
 		StringBuilder builder = new StringBuilder();
-		builder.append("select mem_id from member where mem_id = ?");
+		builder.append("SELECT MEM_ID FROM MEMBER WHERE MEM_ID = ?");
 
 		PreparedStatement statement = connection.prepareStatement(builder.toString());
+		
 		statement.setString(1, searchId);
 		ResultSet resultSet = statement.executeQuery();
 		if (resultSet.next()) {
@@ -51,7 +52,6 @@ public class NoteBoxDAO {
 		LoginedCustomer loginedCustomer = LoginedCustomer.getInstance();
 		
 		StringBuilder builder = new StringBuilder();
-		System.out.println("insertNoteBox¿¡ ¿Ô´Ù");
 		builder.append("INSERT INTO NOTEBOX(NB_CODE, NB_CONT, NB_TITLE, NB_DATE, NB_MEMBER, NB_SENDER)");
 		builder.append("     VALUES(NOTEBOX_SEQ.NEXTVAL, ?, ?, SYSDATE, ?, ?)");
 

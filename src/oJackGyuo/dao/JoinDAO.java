@@ -23,7 +23,8 @@ public class JoinDAO {
 
 	public int insertCustomer(CustomerVO vo) throws Exception { // customer로 바꾸기
 		DriverManager.registerDriver(new OracleDriver());
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb", "7777");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb",
+				"7777");
 		StringBuilder builder = new StringBuilder();
 		builder.append(
 				" INSERT INTO MEMBER(MEM_CODE, MEM_ID, MEM_PW, MEM_NAME, MEM_AGE, MEM_PHONE, MEM_MAIL, MEM_REGNO, MEM_JENDER, MEM_MAR, MEM_POST, MEM_ADD, MEM_DAO, MEM_JOB,MEM_HINT)");
@@ -52,7 +53,8 @@ public class JoinDAO {
 
 	public List<CustomerVO> selectCustomers(CustomerVO vo) throws Exception {
 		DriverManager.registerDriver(new OracleDriver());
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb", "7777");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb",
+				"7777");
 		String query = "SELECT * FROM MEMBER " + " WHERE MEM_ID = ? AND MEM_PW = ?";
 		PreparedStatement pstmt = connection.prepareStatement(query);
 		pstmt.setString(1, vo.getCustomerId());
@@ -77,5 +79,27 @@ public class JoinDAO {
 		vo.setName(rs.getString("MEM_NAME"));
 
 		return vo;
+	}
+
+	public String savePw(String searchId) throws Exception {
+		CustomerVO savePwCustomer = new CustomerVO();
+		
+		DriverManager.registerDriver(new OracleDriver());
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb",
+				"7777");
+		StringBuilder builder = new StringBuilder();
+		builder.append(" SELECT MEM_PW FROM MEMBER WHERE MEM_ID = ?");
+		PreparedStatement statement = connection.prepareStatement(builder.toString());
+		statement.setString(1, searchId);
+		ResultSet resultSet = statement.executeQuery();
+
+		if (resultSet.next()) {
+			savePwCustomer.setCustomerPw(resultSet.getString("MEM_PW"));
+		}
+
+		resultSet.close();
+		statement.close();
+		connection.close();
+		return savePwCustomer.getCustomerPw();
 	}
 }

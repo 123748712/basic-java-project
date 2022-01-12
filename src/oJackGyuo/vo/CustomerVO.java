@@ -24,6 +24,11 @@ public class CustomerVO{
 	public CustomerVO() {
 	}
 
+	public CustomerVO(String customerId, String customerPw) {
+		this.customerId = customerId;
+		this.customerPw = customerPw;
+	}
+
 	public CustomerVO(String customerId, String customerPw, String name, int age, String phone, String mail,
 			String regno, String jnder, String marry, int post, String address, String accurateaddress, String job,
 			String hint) {

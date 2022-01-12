@@ -10,6 +10,7 @@ import oJackGyuo.LoginedCustomer;
 import oJackGyuo.ScannerUtil;
 import oJackGyuo.View;
 import oJackGyuo.dao.JoinDAO;
+import oJackGyuo.dao.NoteBoxDAO;
 import oJackGyuo.vo.CustomerVO;
 
 public class UserService {
@@ -29,67 +30,41 @@ public class UserService {
 	List<CustomerVO> customers = new ArrayList<>();
 	private JoinDAO joinDAO = JoinDAO.getInstance();
 
+	private NoteBoxDAO noteBoxDAO = NoteBoxDAO.getInstance();
+
 	public int join() throws Exception {
 
-		boolean joinRun = false;
-		System.out.print("아이디를 입력하세요 (영어,숫자 사용하여 3~16자 입력)> ");
-		String customerId = "^$";
-		String idre = "^[a-zA-Z0-9]{3,16}$";
-		Pattern re1 = Pattern.compile(idre);
-		Matcher re2 = re1.matcher(customerId);
-
-		while (re2.matches() == false) {
+		boolean idRun = true;
+		String customerId = null;
+		while (idRun) {
+			System.out.println("아이디 > ");
 			customerId = ScannerUtil.nextLine();
-			idre = "^[a-zA-Z0-9]{3,16}$";
-			re1 = Pattern.compile(idre);
-			re2 = re1.matcher(customerId);
-			if (re2.matches() == false) {
-				System.out.println("중복된 아이디가 있거나 올바른 형식이 아닙니다.\t");
-				System.out.print("아이디를 재입력해주시오>");
-			}
-
-			for (CustomerVO customer : customers) {
-				if (customer.getCustomerId().equals(customerId)) {
-					joinRun = true;
-					break;
-				}
-			}
-			if (joinRun) {
-				System.out.println("이미 존재하는 아이디입니다.");
+			if (noteBoxDAO.getInstance().selectMemId(customerId)) {
+				System.out.println("중복된 아이디");
 				continue;
-			}
-		}
-
-		System.out.println();
-		System.out.println("비밀번호는 영문자+숫자+특수문자를 포함하여 8~20자리로 작성하여주세요.");
-		System.out.print("비밀번호를 입력하세요 > ");
-		String customerPw = "";
-		String pwnc = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&])[A-Za-z[0-9]$@$!%*#?&]{8,20}$";
-
-		Pattern pwnc1 = Pattern.compile(pwnc);
-		Matcher pwnc2 = pwnc1.matcher(customerPw);
-
-		while (pwnc2.matches() == false) {
-			customerPw = ScannerUtil.nextLine();
-			pwnc = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&])[A-Za-z[0-9]$@$!%*#?&]{8,20}$";
-			pwnc1 = Pattern.compile(pwnc);
-			pwnc2 = pwnc1.matcher(customerPw);
-			if (pwnc2.matches() == false) {
-				System.out.println("올바른 비밀번호 형식이 아닙니다.");
-				System.out.println("다시 입력하여 주십시오.");
-			}
-		}
-		while (true) {
-			System.out.println("비밀번호를 다시 한번 더 입력해주세요 >");
-			String customerPwConform = ScannerUtil.nextLine();
-			if (!customerPw.equals(customerPwConform)) {
-				System.out.println("올바른 비밀번호 형식이 아닙니다.");
-				System.out.println("다시 입력하여 주십시오.");
 			} else {
-				break;
+				idRun = false;
 			}
 		}
 
+		boolean pwRun = true;
+		String customerPw = null;
+		String checkCustomerPw = null;
+		while (pwRun) {
+			System.out.println("비번");
+			customerPw = ScannerUtil.nextLine();
+
+			System.out.println("비번 확인");
+			checkCustomerPw = ScannerUtil.nextLine();
+
+			if (!customerPw.equals(checkCustomerPw)) {
+				System.out.println("비번 틀림 다시해");
+				continue;
+			} else {
+				pwRun = false;
+			}
+
+		}
 		System.out.println("이름을 입력하시오>");
 		String name = ScannerUtil.nextLine();
 
@@ -149,35 +124,46 @@ public class UserService {
 
 		joinDAO.insertCustomer(new CustomerVO(customerId, customerPw, name, age, phone, mail, regno, jender, marry,
 				post, add, dao, job, hint));
+
 		return View.HOME;
 
 	}
 
 	public int login() throws Exception {
-		System.out.println("로그인 ID > ");
-		String loginId = scanner.nextLine();
-		System.out.println("loginId : " + loginId);
-		//싱글톤패턴
+		// 싱글톤패턴
 		LoginedCustomer loginedCustomer = LoginedCustomer.getInstance();
-		CustomerVO foundCustomer = new CustomerVO();
+		String loginId = null;
+		String loginPw = null;
+		boolean idRun = true;
+		CustomerVO foundCustomer = new CustomerVO(loginId, loginPw);
+		while (idRun) {
+			System.out.println("로그인 ID > ");
+			loginId = scanner.nextLine();
+			if (noteBoxDAO.getInstance().selectMemId(loginId)) {
+				foundCustomer.setCustomerId(loginId);
+				System.out.println("loginId : " + loginId);
+				idRun = false;
+			} else {
+				System.out.println("아이디 틀림 다시");
+			}
+		}
 
-//			for (CustomerVO customer1 : customers) {
-//				if (customer1.getCustomerId().equals(loginId)) {
-//					foundCustomer = customer1;
-//				}
-//			}
-//			if(foundCustomer == null) {
-//				System.out.println("존재하지 않는 아이디입니다.");
-//				continue;
-//			}
-
-		System.out.println("로그인 PW > ");
-		String loginPw = scanner.nextLine();
-		
+		boolean pwRun = true;
+		while (pwRun) {
+			System.out.println("로그인 PW > ");
+			loginPw = scanner.nextLine();
+			if (loginPw.equals(joinDAO.savePw(loginId))) {
+				foundCustomer.setCustomerPw(loginPw);
+				pwRun = false;
+			} else {
+				System.out.println("틀림 다시.");
+			}
+		}
 		System.out.println("loginPw : " + loginPw);
-		
-		foundCustomer.setCustomerId(loginId);
-		foundCustomer.setCustomerPw(loginPw);
+
+		LoginedCustomer.getInstance().setLoginedCustomer(foundCustomer);
+
+		LoginedCustomer.getInstance().setLoginedCustomer(foundCustomer);
 
 		List<CustomerVO> customers = joinDAO.selectCustomers(foundCustomer);
 
@@ -186,11 +172,11 @@ public class UserService {
 		} else {
 			System.out.println(customers.get(0).getName() + "님 로그인 되었습니다.");
 //				foundCustomer = loginedCustomer;
-			//loginedCustomer 객체는 싱글톤 패턴으로 공유되고 있음
+			// loginedCustomer 객체는 싱글톤 패턴으로 공유되고 있음
 			loginedCustomer.setLoginedCustomer(foundCustomer);
 		}
-
 		return View.MAIN;
+
 	}// end login()
 
 	public int main() {
