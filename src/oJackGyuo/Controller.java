@@ -49,9 +49,9 @@ public class Controller {
 			case View.NOTICE_BOARD:
 				view = MainService.notiBoard();
 				break;
-			case View.NOTEBOX :
-				view = NoteBoxService.noteSend();
-			
+			case View.NOTEBOX:
+				view = noteBoxService.send();
+				break;
 			case View.EXIT:
 				System.out.println("저희 오작교를 이용해주셔서 감사합니다!");
 				System.out.println("좋은하루 보내시길 바랍니다.");
