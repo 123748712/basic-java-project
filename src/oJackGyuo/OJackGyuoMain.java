@@ -4,13 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class OJackGyuoMain {
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
 
 		List<Article> articles = new ArrayList<>();
 		List<Customer> customers = new ArrayList<>();
@@ -224,7 +222,7 @@ public class OJackGyuoMain {
 						break;
 					case 2:
 						System.out.println("=======================");
-						System.out.println("1. 받은 쪽지 / 2. 보낸 쪽지");
+						System.out.println("1. 받은 쪽지 / 2. 보낸 쪽지 / 3. 홈으로 이동");
 						System.out.println("=======================");
 						System.out.print("번호 입력 > ");
 						int nTNum = Integer.parseInt(scanner.nextLine());

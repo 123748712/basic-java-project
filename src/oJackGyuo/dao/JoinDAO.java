@@ -1,4 +1,4 @@
-package oJackGyuo;
+package oJackGyuo.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import oJackGyuo.vo.CustomerVO;
 import oracle.jdbc.driver.OracleDriver;
 
 public class JoinDAO {
@@ -20,13 +21,13 @@ public class JoinDAO {
 	private JoinDAO() {
 	}
 
-	public int insertMember(CustomerVO vo) throws Exception {
+	public int insertMember(CustomerVO vo) throws Exception { // customer로 바꾸기
 		DriverManager.registerDriver(new OracleDriver());
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "MarryWeb", "7777");
 		StringBuilder builder = new StringBuilder();
 		builder.append(
-				"INSERT INTO MEMBER(MEM_CODE, MEM_ID, MEM_PW, MEM_NAME, MEM_AGE, MEM_PHONE, MEM_MAIL, MEM_REGNO, MEM_JENDER, MEM_MAR, MEM_POST, MEM_ADD, MEM_DAO, MEM_JOB,MEM_HINT)");
-		builder.append("VALUES ('a'||LPAD(MEMBER_SEQ.NEXTVAL,3,'0'),?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				" INSERT INTO MEMBER(MEM_CODE, MEM_ID, MEM_PW, MEM_NAME, MEM_AGE, MEM_PHONE, MEM_MAIL, MEM_REGNO, MEM_JENDER, MEM_MAR, MEM_POST, MEM_ADD, MEM_DAO, MEM_JOB,MEM_HINT)");
+		builder.append(" VALUES ('a'||LPAD(MEMBER_SEQ.NEXTVAL,3,'0'),?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 		PreparedStatement statement = connection.prepareStatement(builder.toString());
 		statement.setString(1, vo.getCustomerId());

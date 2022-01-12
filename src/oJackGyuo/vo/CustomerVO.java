@@ -1,9 +1,9 @@
-package oJackGyuo;
+package oJackGyuo.vo;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-class CustomerVO {
+public class CustomerVO{
 	private String customerId;
 	private String customerPw;
 	private String name;

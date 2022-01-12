@@ -1,9 +1,14 @@
-package oJackGyuo;
+package oJackGyuo.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import oJackGyuo.ScannerUtil;
+import oJackGyuo.View;
+import oJackGyuo.dao.JoinDAO;
+import oJackGyuo.vo.CustomerVO;
 
 public class UserService {
 	private UserService() {
@@ -19,10 +24,10 @@ public class UserService {
 	}
 
 	private JoinDAO joinDAO = JoinDAO.getInstance();
+	List<CustomerVO> customers = new ArrayList<>();
 
 	public int join() throws Exception {
 
-		List<CustomerVO> customers = new ArrayList<>();
 		boolean joinRun = false;
 		System.out.print("아이디를 입력하세요 (영어,숫자 사용하여 3~16자 입력)> ");
 		String customerId = "^$";
