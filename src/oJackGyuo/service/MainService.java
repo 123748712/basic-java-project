@@ -2,12 +2,26 @@ package oJackGyuo.service;
 
 import java.util.Scanner;
 
+import oJackGyuo.LoginedCustomer;
 import oJackGyuo.ScannerUtil;
 import oJackGyuo.View;
 
 public class MainService {
-	Scanner scanner = new Scanner(System.in);
+	private static MainService instance = new MainService();
+
+	public static MainService getInstance() {
+		if (instance == null) {
+			instance = new MainService();
+		}
+		return instance;
+	}
+
+	private MainService() {
+	}
 	private UserService us = UserService.getInstance();
+
+
+	Scanner scanner = new Scanner(System.in);
 
 	public static int notice() {
 		System.out.println("오작교 공지사항 입니다.");
@@ -26,8 +40,9 @@ public class MainService {
 
 	}
 
-	public static int notiBoard() {
-		return 0;
-
+	public int logout() {
+		LoginedCustomer.getInstance().setLoginedCustomer(null);
+		System.out.println("로그아웃 되었습니다.");
+		return View.HOME;
 	}
 }

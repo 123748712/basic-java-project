@@ -190,6 +190,8 @@ public class UserService {
 			return View.NOTEBOX;
 		case 4:
 			return View.NOTICE;
+		case 5:
+			return View.LOGOUT;
 		default:
 			System.out.println("번호를 잘못 입력하셨습니다.");
 			return View.MAIN;
@@ -284,4 +286,5 @@ public class UserService {
 		}
 		return View.SERVICE;
 	}
+
 }

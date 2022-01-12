@@ -15,6 +15,7 @@ public class Controller {
 	public void start() throws Exception {
 		NoteBoxService noteBoxService = NoteBoxService.getInstance();
 		UserService userService = UserService.getInstance();
+		MainService mainService = MainService.getInstance();
 		int view = View.HOME;
 
 		while (true) {
@@ -46,11 +47,11 @@ public class Controller {
 			case View.NOTICE:
 				view = MainService.notice();
 				break;
-			case View.NOTICE_BOARD:
-				view = MainService.notiBoard();
-				break;
 			case View.NOTEBOX:
 				view = noteBoxService.send();
+				break;
+			case View.LOGOUT:
+				view = mainService.logout();
 				break;
 			case View.EXIT:
 				System.out.println("저희 오작교를 이용해주셔서 감사합니다!");
