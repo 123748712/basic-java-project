@@ -187,6 +187,8 @@ public class UserService {
 		int mainMenu = Integer.parseInt(scanner.nextLine());
 		switch (mainMenu) {
 		case 1:
+			return View.SENDNB;
+		case 2:
 			return View.NOTEBOX;
 		case 4:
 			return View.NOTICE;

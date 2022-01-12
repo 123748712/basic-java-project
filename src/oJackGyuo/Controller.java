@@ -47,8 +47,17 @@ public class Controller {
 			case View.NOTICE:
 				view = MainService.notice();
 				break;
-			case View.NOTEBOX:
-				view = noteBoxService.send();
+			case View.SENDNB:
+				view = noteBoxService.send(); 
+				break;
+			case View.NOTEBOX: // 쪽지함
+				view = noteBoxService.viewNoteBox();
+				break;
+			case View.SENDNOTEBOX:
+				view = noteBoxService.viewSendNoteBox();// 보낸쪽지함
+				break;
+			case View.RECIVENOTEBOX:
+				view = noteBoxService.viewReceiveNoteBox();// 받은쪽지함
 				break;
 			case View.LOGOUT:
 				view = mainService.logout();

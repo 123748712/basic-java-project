@@ -13,6 +13,13 @@ public class NoteBoxVO {
 	public NoteBoxVO() {
 	}
 
+	public NoteBoxVO(String nBCode, String nBTitle, String nBBody, String nBMember) {
+		this.nBCode = nBCode;
+		this.nBTitle = nBTitle;
+		this.nBBody = nBBody;
+		this.nBMember = nBMember;
+	}
+
 	public NoteBoxVO(String nBTitle, String nBBody, String nBMember) {
 		this.nBTitle = nBTitle;
 		this.nBBody = nBBody;

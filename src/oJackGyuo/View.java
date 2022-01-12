@@ -12,6 +12,8 @@ public interface View {
 	int MAIN = 11; // 메인화면
 	int SENDNB = 12; // 쪽지보내기
 	int NOTEBOX = 13; // 쪽지함
+	int SENDNOTEBOX = 19; // 보낸쪽지함
+	int RECIVENOTEBOX = 18; // 받은쪽지함
 	int PAY = 14; // 결제
 	int NOTICE = 15; // 공지사항
 	int NOTICE_BOARD = 17; // 공지사항 게시판
