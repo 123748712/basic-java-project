@@ -81,8 +81,6 @@ public class NoteBoxDAO {
 
 		while (resultSet.next()) {
 			notes.add(makeResultToVo(resultSet));
-			System.out.println(resultSet.getInt(1) + "번 글 > " + resultSet.getString("NB_TITLE"));
-			System.out.println(resultSet.getInt(1) + "번 내용 > " + resultSet.getString("NB_CONT"));
 			
 			}
 
@@ -111,16 +109,11 @@ public class NoteBoxDAO {
 
 		while (resultSet.next()) {
 			notes.add(makeResultToVo(resultSet));
-			System.out.println(resultSet.getInt(1) + "번 글 > " + resultSet.getString("NB_TITLE"));
-			System.out.println(resultSet.getInt(1) + "번 내용 > " + resultSet.getString("NB_CONT"));
-			
 			}
-
 		
 		resultSet.close();
 		statement.close();
 		connection.close();
-		
 	
 		return notes;
 	}
@@ -128,11 +121,11 @@ public class NoteBoxDAO {
 	public NoteBoxVO makeResultToVo(ResultSet resultSet) throws Exception {
 		NoteBoxVO note = new NoteBoxVO();
 		
+		note.setnBCode(resultSet.getString("NB_CODE"));
 		note.setnBTitle(resultSet.getString("NB_TITLE"));
-		note.setnBTitle(resultSet.getString("NB_CONT"));
-		note.setnBTitle(resultSet.getString("NB_MEMBER"));
-		note.setnBTitle(resultSet.getString("NB_SENDER"));
-		
+		note.setnBBody(resultSet.getString("NB_CONT"));
+		note.setnBMember(resultSet.getString("NB_MEMBER"));
+		note.setnBSender(resultSet.getString("NB_SENDER"));
 		return note;
 	}
 }
