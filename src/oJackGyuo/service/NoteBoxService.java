@@ -65,27 +65,27 @@ public class NoteBoxService {
 	}
 
 	public int viewSendNoteBox() throws Exception {
-		System.out.println("================");
-		List<NoteBoxVO> notes = NoteBoxDAO.getInstance().selectSendNoteBox(LoginedCustomer.getInstance().getLoginedCustomer().getCustomerId());
-		System.out.println("쪽지 번호 | 제목");
-		for(NoteBoxVO note : notes) {
-			System.out.println(note.getnBCode() + "      | " + note.getnBTitle());
-			
+		System.out.println("=========================================");
+		List<NoteBoxVO> notes = NoteBoxDAO.getInstance()
+				.selectSendNoteBox(LoginedCustomer.getInstance().getLoginedCustomer().getCustomerId());
+		System.out.println("쪽지 번호 |     제목    |       내용");
+		for (NoteBoxVO note : notes) {
+			System.out.println(note.getnBCode() + "      | " + note.getnBTitle() + "     |      " + note.getnBBody());
 		}
-		System.out.println("================");
+		System.out.println("=========================================");
 
 		return View.NOTEBOX;
 	}
 
 	public int viewReceiveNoteBox() throws Exception {
-		System.out.println("================");
-		List<NoteBoxVO> notes = NoteBoxDAO.getInstance().selectReceiveNoteBox(LoginedCustomer.getInstance().getLoginedCustomer().getCustomerId());
-		System.out.println("쪽지 번호 | 제목");
-		for(NoteBoxVO note : notes) {
-			System.out.println(note.getnBCode() + "      | " + note.getnBTitle());
-			
+		System.out.println("=========================================");
+		List<NoteBoxVO> notes = NoteBoxDAO.getInstance()
+				.selectReceiveNoteBox(LoginedCustomer.getInstance().getLoginedCustomer().getCustomerId());
+		System.out.println("쪽지 번호 |     제목    |       내용");
+		for (NoteBoxVO note : notes) {
+			System.out.println(note.getnBCode() + "      | " + note.getnBTitle() + "     |      " + note.getnBBody());
 		}
-		System.out.println("================");
+		System.out.println("=========================================");
 		return View.NOTEBOX;
 	}
 }
