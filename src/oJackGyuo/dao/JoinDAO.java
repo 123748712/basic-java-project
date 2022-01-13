@@ -82,7 +82,7 @@ public class JoinDAO {
 
 	public String savePw(String searchId) throws Exception {
 		CustomerVO savePwCustomer = new CustomerVO();
-		
+
 		DriverManager.registerDriver(new OracleDriver());
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb",
 				"7777");
@@ -100,5 +100,37 @@ public class JoinDAO {
 		statement.close();
 		connection.close();
 		return savePwCustomer.getCustomerPw();
+	}
+
+	public CustomerVO getFoundIdAndPw(String searchName, String searchHint) throws Exception {
+		CustomerVO foundCustomer = new CustomerVO();
+		DriverManager.registerDriver(new OracleDriver());
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb",
+				"7777");
+		StringBuilder builder = new StringBuilder();
+		builder.append(" SELECT MEM_ID, MEM_PW FROM MEMBER");
+		builder.append(" WHERE MEM_NAME = ?");
+		builder.append(" AND MEM_HINT = ?");
+		PreparedStatement statement = connection.prepareStatement(builder.toString());
+		statement.setString(1, searchName);
+		statement.setString(2, searchHint);
+		ResultSet resultSet = statement.executeQuery();
+
+		
+		if (resultSet.next()) {
+			foundCustomer.setCustomerId(resultSet.getString("MEM_ID"));
+			foundCustomer.setCustomerPw(resultSet.getString("MEM_PW"));
+		}
+		
+		return foundCustomer;
+	}
+
+	public CustomerVO makeResultSettoVo2(ResultSet resultSet) {
+		CustomerVO foundCustomer = new CustomerVO();
+
+		foundCustomer.setCustomerId("MEM_ID");
+		foundCustomer.setCustomerId("MEM_PW");
+
+		return foundCustomer;
 	}
 }

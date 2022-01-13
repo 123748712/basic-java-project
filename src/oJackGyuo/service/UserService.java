@@ -195,14 +195,18 @@ public class UserService {
 		}
 	}
 
-	public int searchId() {
+	public int searchId() throws Exception {
+		JoinDAO joinDAO = JoinDAO.getInstance();
+
 		System.out.println("회원 정보를 입력해주세요.");
 		System.out.print("이름 > ");
 		String name = scanner.nextLine();
 		System.out.print("힌트 입력 > ");
 		String hint = scanner.nextLine();
-		System.out.println("본인 인증이 완료되었습니다.");
-
+		
+		CustomerVO customer = joinDAO.getFoundIdAndPw(name, hint);
+		System.out.println("아이디 > " + customer.getCustomerId());
+		System.out.println("비밀번호 > " + customer.getCustomerPw());
 		return View.HOME;
 	}
 
