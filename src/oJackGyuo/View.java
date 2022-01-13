@@ -1,29 +1,32 @@
 package oJackGyuo;
 
 public interface View {
-	int HOME = 0; // ¸ÞÀÎÈ­¸é
-	int JOIN = 1; // È¸¿ø°¡ÀÔ
-	int LOGIN = 2; // ·Î±×ÀÎ
-	int SEARCH = 4; // ¾ÆÀÌµð,ºñ¹Ð¹øÈ£ Ã£±â
-	int SERVICE = 9; // °í°´¼¾ÅÍ
-	int SERVICE_NUM = 8; // °í°´¼¾ÅÍ ÀüÈ­¹øÈ£
-	int SERVICE_QNA = 7; // °í°´¼¾ÅÍ QNA
+	int HOME = 0; //ë©”ì¸í™”ë©´
+	int JOIN = 1; //íšŒì›ê°€ìž…
+	int LOGIN = 2; //ë¡œê·¸ì¸
+	int SEARCH= 4; //ì•„ì´ë””,ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+	int SERVICE = 9; //ê³ ê°ì„¼í„°
+	int SERVICE_NUM = 8; //ê³ ê°ì„¼í„° ì „í™”ë²ˆí˜¸
+	int SERVICE_QNA = 7; //ê³ ê°ì„¼í„° QNA
+	
+	int MAIN = 11; //ë©”ì¸í™”ë©´
+	int SENDNB = 12; //ìª½ì§€ë³´ë‚´ê¸°
+	int NOTEBOX = 13; //ìª½ì§€í•¨
+	int SENDNOTEBOX = 21; // ë³´ë‚¸ìª½ì§€í•¨
+	int RECIVENOTEBOX = 20; // ë°›ì€ìª½ì§€í•¨
+	int PAY = 14; //ê²°ì œ
+	int NOTICE = 15; //ê³µì§€ì‚¬í•­
+	int LOGOUT = 16; //ë¡œê·¸ì•„ì›ƒ
+	int NOTICE_BOARD = 17;	//ê³µì§€ì‚¬í•­ ê²Œì‹œíŒ
+	int NOTICE_BOARDLIST = 19; //ê³µì§€ ê²Œì‹œê¸€ ë³´ê¸°
+	
+	
+	int ADMIN_NOTICE_BOARD = 30;	//ê³µì§€ ê²Œì‹œê¸€ ë³´ê¸°
+	int ADMIN_NOTICE_BOARDLIST = 31; //ê³µì§€ì‚¬í•­ ê²Œì‹œíŒ
+	int ADMIN_NOTICE_INSERT =32; // ê³µì§€ì‚¬í•­ ì¶”ê°€
+	int ADMIN_NOTICE_UPDATE=33; //ê³µì§€ì‚¬í•­ ìˆ˜ì •
+	int ADMIN_NOTICE_DELETE=34;
 
-	int MAIN = 11; // ¸ÞÀÎÈ­¸é
-	int SENDNB = 12; // ÂÊÁöº¸³»±â
-	int NOTEBOX = 13; // ÂÊÁöÇÔ
-	int SENDNOTEBOX = 19; // º¸³½ÂÊÁöÇÔ
-	int RECIVENOTEBOX = 18; // ¹ÞÀºÂÊÁöÇÔ
-	int PAY = 14; // °áÁ¦
-	int NOTICE = 15; // °øÁö»çÇ×
-	int NOTICE_BOARD = 17; // °øÁö»çÇ× °Ô½ÃÆÇ
-	int LOGOUT = 16; // ·Î±×¾Æ¿ô
-
-	// °øÁö»çÇ× ÀÎ
-	int ARTICLE = 21; // °øÁö»çÇ× °Ô½ÃÆÇ
-	int ARTICLE_WRITER = 22; // ±Û¾²±â
-	int ARTICLE_MODIFY = 23; // ¼öÁ¤
-	int ARTICLE_DELETE = 24; // »èÁ¦
-
+	
 	int EXIT = 99;
 }

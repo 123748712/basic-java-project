@@ -37,10 +37,10 @@ public class UserService {
 		boolean idRun = true;
 		String customerId = null;
 		while (idRun) {
-			System.out.println("¾ÆÀÌµğ > ");
+			System.out.print("íšŒì›ê°€ì… ID  > ");
 			customerId = ScannerUtil.nextLine();
 			if (noteBoxDAO.getInstance().selectMemId(customerId)) {
-				System.out.println("Áßº¹µÈ ¾ÆÀÌµğ");
+				System.out.println("ì¤‘ë³µëœ ì•„ì´ë””ì…ë‹ˆë‹¤.");
 				continue;
 			} else {
 				idRun = false;
@@ -51,36 +51,36 @@ public class UserService {
 		String customerPw = null;
 		String checkCustomerPw = null;
 		while (pwRun) {
-			System.out.println("ºñ¹ø");
+			System.out.print("íšŒì›ê°€ì… PW > ");
 			customerPw = ScannerUtil.nextLine();
 
-			System.out.println("ºñ¹ø È®ÀÎ");
+			System.out.print("íšŒì›ê°€ì… PW í™•ì¸ > ");
 			checkCustomerPw = ScannerUtil.nextLine();
 
 			if (!customerPw.equals(checkCustomerPw)) {
-				System.out.println("ºñ¹ø Æ²¸² ´Ù½ÃÇØ");
+				System.out.println("ë‘ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 				continue;
 			} else {
 				pwRun = false;
 			}
 
 		}
-		System.out.println("ÀÌ¸§À» ÀÔ·ÂÇÏ½Ã¿À>");
+		System.out.print("ì´ë¦„  > ");
 		String name = ScannerUtil.nextLine();
 
 		int age = 0;
-		System.out.println("³ªÀÌ¸¦ ÀÔ·ÂÇÏ½Ã¿À> ");
+		System.out.print("ë‚˜ì´  > ");
 		while (true) {
 			try {
 				age = Integer.parseInt(ScannerUtil.nextLine());
 				break;
 			} catch (java.lang.NumberFormatException e) {
-				System.out.println("¼ıÀÚ¸¸ ÀÔ·Â°¡´ÉÇÕ´Ï´Ù. ´Ù½ÃÀÔ·ÂÇØÁÖ¼¼¿ä>");
+				System.out.print("ìˆ«ìë§Œ ì…ë ¥ê°€ëŠ¥í•©ë‹ˆë‹¤. ë‹¤ì‹œì…ë ¥í•´ì£¼ì„¸ìš”. > ");
 				continue;
 			}
 		}
 
-		System.out.println("ÇÚµåÆù ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À(000-0000-0000 Çü½Ä)>");// Á¤±Ô½Ä
+		System.out.print("í•¸ë“œí° ë²ˆí˜¸ (010-0000-0000)"); // ì •ê·œì‹
 		String phone = " ";
 		String phonenc = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
 		Pattern phonenc1 = Pattern.compile(phonenc);
@@ -91,35 +91,35 @@ public class UserService {
 			phonenc1 = Pattern.compile(phonenc);
 			phonenc2 = phonenc1.matcher(phone);
 			if (phonenc2.matches() == false) {
-				System.out.println("ÀüÈ­¹øÈ£ Çü½ÄÀÌ Àß¸øµÇ¾ú½À´Ï´Ù.");
-				System.out.println("´Ù½Ã ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+				System.out.println("ì „í™”ë²ˆí˜¸ í˜•ì‹ì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
+				System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 			}
 		}
-		System.out.println("¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ½Ã¿À>");
+		System.out.print("ë©”ì¼  > ");
 		String mail = ScannerUtil.nextLine();
 
-		System.out.println("ÁÖ¹Îµî·Ï¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä > (-±îÁö °°ÀÌ ÀÔ·ÂÇØÁÖ¼¼¿ä.)"); // Á¤±Ô½Ä
+		System.out.print("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ > "); // ì •ê·œì‹
 		String regno = ScannerUtil.nextLine();
 
-		System.out.println("¼ºº°À» ÀÔ·ÂÇØÁÖ½Ã¿À>");
+		System.out.print("ì„±ë³„ > ");
 		String jender = ScannerUtil.nextLine();
 
-		System.out.println("°áÈ¥ ¿©ºÎ¸¦ ÀÔ·ÂÇØÁÖ½Ã¿À>");
+		System.out.print("ê²°í˜¼ ì—¬ë¶€ (ì´ˆí˜¼/ì¬í˜¼) > ");
 		String marry = ScannerUtil.nextLine();
 
-		System.out.println("¿ìÆí¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ½Ã¿À>");
+		System.out.print("ìš°í¸ë²ˆí˜¸ > ");
 		int post = Integer.parseInt(ScannerUtil.nextLine());
 
-		System.out.println("ÁÖ¼Ò¸¦ ÀÔ·ÂÇØÁÖ½Ã¿À>");
+		System.out.print("ì£¼ì†Œ > ");
 		String add = ScannerUtil.nextLine();
 
-		System.out.println("»ó¼¼ ÁÖ¼Ò¸¦ ÀÔ·ÂÇØÁÖ½Ã¿À>");
+		System.out.print("ìƒì„¸ ì£¼ì†Œ > ");
 		String dao = ScannerUtil.nextLine();
 
-		System.out.println("Á÷¾÷À» ÀÔ·ÂÇØÁÖ¼¼¿ä>");
+		System.out.print("ì§ì—… > ");
 		String job = ScannerUtil.nextLine();
 
-		System.out.println("¾ÆÀÌµğ Ã£±â ÈùÆ®(º°¸íÀ» ÀÔ·ÂÇØÁÖ½Ã¿À)>");
+		System.out.print("íŒíŠ¸(ë³„ëª…) > ");
 		String hint = ScannerUtil.nextLine();
 
 		joinDAO.insertCustomer(new CustomerVO(customerId, customerPw, name, age, phone, mail, regno, jender, marry,
@@ -130,49 +130,44 @@ public class UserService {
 	}
 
 	public int login() throws Exception {
-		// ½Ì±ÛÅæÆĞÅÏ
+		// ì‹±ê¸€í†¤íŒ¨í„´
 		LoginedCustomer loginedCustomer = LoginedCustomer.getInstance();
 		String loginId = null;
 		String loginPw = null;
 		boolean idRun = true;
 		CustomerVO foundCustomer = new CustomerVO(loginId, loginPw);
 		while (idRun) {
-			System.out.println("·Î±×ÀÎ ID > ");
+			System.out.print("ë¡œê·¸ì¸ ID > ");
 			loginId = scanner.nextLine();
 			if (noteBoxDAO.getInstance().selectMemId(loginId)) {
 				foundCustomer.setCustomerId(loginId);
-				System.out.println("loginId : " + loginId);
 				idRun = false;
 			} else {
-				System.out.println("¾ÆÀÌµğ Æ²¸² ´Ù½Ã");
+				System.out.println("ë¡œê·¸ì¸ IDê°€ í‹€ë ¸ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			}
 		}
 
 		boolean pwRun = true;
 		while (pwRun) {
-			System.out.println("·Î±×ÀÎ PW > ");
+			System.out.print("ë¡œê·¸ì¸ PW > ");
 			loginPw = scanner.nextLine();
 			if (loginPw.equals(joinDAO.savePw(loginId))) {
 				foundCustomer.setCustomerPw(loginPw);
 				pwRun = false;
 			} else {
-				System.out.println("Æ²¸² ´Ù½Ã.");
+				System.out.println("ë¡œê·¸ì¸ PWê°€ í‹€ë ¸ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			}
 		}
-		System.out.println("loginPw : " + loginPw);
-
-		LoginedCustomer.getInstance().setLoginedCustomer(foundCustomer);
-
 		LoginedCustomer.getInstance().setLoginedCustomer(foundCustomer);
 
 		List<CustomerVO> customers = joinDAO.selectCustomers(foundCustomer);
 
 		if (customers.size() < 1) {
-			System.out.println("¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇØÁÖ¼¼¿ä.");
+			System.out.println("ID ë˜ëŠ” PWë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”.");
 		} else {
-			System.out.println(customers.get(0).getName() + "´Ô ·Î±×ÀÎ µÇ¾ú½À´Ï´Ù.");
+			System.out.println(customers.get(0).getName() + "ë‹˜ ë¡œê·¸ì¸ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 //				foundCustomer = loginedCustomer;
-			// loginedCustomer °´Ã¼´Â ½Ì±ÛÅæ ÆĞÅÏÀ¸·Î °øÀ¯µÇ°í ÀÖÀ½
+			// loginedCustomer ê°ì²´ëŠ” ì‹±ê¸€í†¤ íŒ¨í„´ìœ¼ë¡œ ê³µìœ ë˜ê³  ìˆìŒ
 			loginedCustomer.setLoginedCustomer(foundCustomer);
 		}
 		return View.MAIN;
@@ -180,10 +175,10 @@ public class UserService {
 	}// end login()
 
 	public int main() {
-		System.out.println("=====================================================");
-		System.out.println("1. ÂÊÁö¹ß¼Û / 2. ÂÊÁöÇÔ / 3. °áÁ¦ / 4. °øÁö»çÇ× / 5. ·Î±×¾Æ¿ô");
-		System.out.println("=====================================================");
-		System.out.print("¹øÈ£ ÀÔ·Â > ");
+		System.out.println("================================================");
+		System.out.println("1. ìª½ì§€ë°œì†¡ / 2. ìª½ì§€í•¨ / 3. ê²°ì œ / 4. ê³µì§€ì‚¬í•­ / 5. ë¡œê·¸ì•„ì›ƒ");
+		System.out.println("================================================");
+		System.out.print("ë²ˆí˜¸ ì…ë ¥ > ");
 		int mainMenu = Integer.parseInt(scanner.nextLine());
 		switch (mainMenu) {
 		case 1:
@@ -195,28 +190,28 @@ public class UserService {
 		case 5:
 			return View.LOGOUT;
 		default:
-			System.out.println("¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+			System.out.println("ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			return View.MAIN;
 		}
 	}
 
 	public int searchId() {
-		System.out.println("È¸¿ø Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
-		System.out.print("ÀÌ¸§ > ");
+		System.out.println("íšŒì› ì •ë³´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+		System.out.print("ì´ë¦„ > ");
 		String name = scanner.nextLine();
-		System.out.print("ÈùÆ® ÀÔ·Â > ");
+		System.out.print("íŒíŠ¸ ì…ë ¥ > ");
 		String hint = scanner.nextLine();
-		System.out.println("º»ÀÎ ÀÎÁõÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+		System.out.println("ë³¸ì¸ ì¸ì¦ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 
 		return View.HOME;
 	}
 
 	public int service() {
-		System.out.println("°í°´¼¾ÅÍ È­¸éÀÔ´Ï´Ù.");
+		System.out.println("ê³ ê°ì„¼í„° í™”ë©´ì…ë‹ˆë‹¤.");
 		System.out.println("=====================================");
-		System.out.println("1. ¼­ºñ½ºÀüÈ­¹øÈ£ / 2. QnA°Ô½ÃÆÇ / 3. È¨À¸·Î ÀÌµ¿");
+		System.out.println("1. ì„œë¹„ìŠ¤ì „í™”ë²ˆí˜¸ / 2. QnAê²Œì‹œíŒ / 3. í™ˆìœ¼ë¡œ ì´ë™");
 		System.out.println("=====================================");
-		System.out.print("¹øÈ£ ÀÔ·Â > ");
+		System.out.print("ë²ˆí˜¸ ì…ë ¥ > ");
 		int homeMenu = Integer.parseInt(ScannerUtil.nextLine());
 		switch (homeMenu) {
 		case 1:
@@ -230,10 +225,10 @@ public class UserService {
 	}
 
 	public int serviceNum() {
-		System.out.println("°í°´¼¾ÅÍ ¼­ºñ½º ÀüÈ­¹øÈ£ÀÔ´Ï´Ù.");
-		System.out.println("ÀüÈ­¹øÈ£ > 010-8342-7973");
+		System.out.println("ê³ ê°ì„¼í„° ì„œë¹„ìŠ¤ ì „í™”ë²ˆí˜¸ì…ë‹ˆë‹¤.");
+		System.out.println("ì „í™”ë²ˆí˜¸ > 010-8342-7973");
 		System.out.println("-----------------------");
-		System.out.println("0.³ª°¡±â");
+		System.out.println("0.ë‚˜ê°€ê¸°");
 		int noteNum = Integer.parseInt(ScannerUtil.nextLine());
 		switch (noteNum) {
 		case 0:
@@ -247,39 +242,39 @@ public class UserService {
 
 	public int serviceQna() {
 		System.out.println("----------------------------- ");
-		System.out.println("1.¾ÆÀÌµğ¸¦ ¸ğ¸£°Ú¾î¿ä!");
-		System.out.println("2.ºñ¹Ğ¹øÈ£°¡ ±â¾ïÀÌ ¾È³³´Ï´Ù!");
-		System.out.println("3.ÂÊÁö´Â ¾î¶»°Ô º¸³»³ª¿ä?");
-		System.out.println("4.°áÁ¦ ¹æ¹ıÀº ¾î¶»°Ô µÇ³ª¿©?");
-		System.out.println("5.°í°´¼¾ÅÍ ÀüÈ­¹øÈ£¸¦ ¾Ë°í½Í½À´Ï´Ù.");
-		System.out.println("0.³ª°¡±â");
+		System.out.println("1.ì•„ì´ë””ë¥¼ ëª¨ë¥´ê² ì–´ìš”!");
+		System.out.println("2.ë¹„ë°€ë²ˆí˜¸ê°€ ê¸°ì–µì´ ì•ˆë‚©ë‹ˆë‹¤!");
+		System.out.println("3.ìª½ì§€ëŠ” ì–´ë–»ê²Œ ë³´ë‚´ë‚˜ìš”?");
+		System.out.println("4.ê²°ì œ ë°©ë²•ì€ ì–´ë–»ê²Œ ë˜ë‚˜ì—¬?");
+		System.out.println("5.ê³ ê°ì„¼í„° ì „í™”ë²ˆí˜¸ë¥¼ ì•Œê³ ì‹¶ìŠµë‹ˆë‹¤.");
+		System.out.println("0.ë‚˜ê°€ê¸°");
 		System.out.println("----------------------------- ");
-		System.out.println("ÀÔ·Â>");
+		System.out.println("ì…ë ¥>");
 		int sc = ScannerUtil.nextint();
 		switch (sc) {
 		case 1:
 			System.out.println("-------------------------");
-			System.out.println("Á¦¸ñ: ¾ÆÀÌµğ¸¦ ¸ğ¸£°Ú¾î¿ä!");
-			System.out.println("´äº¯: ID/PW¶õ¿¡°¡¼­ ¾ÆÀÌµğ¸¦ Ã£À¸½Ã¸éµË´Ï´Ù.");
-			System.out.println("0.³ª°¡±â");
+			System.out.println("ì œëª©: ì•„ì´ë””ë¥¼ ëª¨ë¥´ê² ì–´ìš”!");
+			System.out.println("ë‹µë³€: ID/PWë€ì—ê°€ì„œ ì•„ì´ë””ë¥¼ ì°¾ìœ¼ì‹œë©´ë©ë‹ˆë‹¤.");
+			System.out.println("0.ë‚˜ê°€ê¸°");
 			System.out.println("--------------------------");
-			System.out.println("ÀÔ·Â>");
+			System.out.println("ì…ë ¥>");
 			String sc1 = ScannerUtil.nextLine();
 			return View.SERVICE_QNA;
 		case 2:
 			System.out.println("-------------------------");
-			System.out.println("Á¦¸ñ: ºñ¹Ğ¹øÈ£°¡ ±â¾ïÀÌ ¾È³³´Ï´Ù.");
-			System.out.println("´äº¯: ID/PW¶õ¿¡°¡¼­ ¾ÆÀÌµğ¸¦ Ã£À¸½Ã¸éµË´Ï´Ù.");
+			System.out.println("ì œëª©: ë¹„ë°€ë²ˆí˜¸ê°€ ê¸°ì–µì´ ì•ˆë‚©ë‹ˆë‹¤.");
+			System.out.println("ë‹µë³€: ID/PWë€ì—ê°€ì„œ ì•„ì´ë””ë¥¼ ì°¾ìœ¼ì‹œë©´ë©ë‹ˆë‹¤.");
 			System.out.println("--------------------------");
-			System.out.println("³ª°¡·Á¸é ¾Æ¹«Å°³ª ´­·¯ÁÖ¼¼¿ä!");
+			System.out.println("ë‚˜ê°€ë ¤ë©´ ì•„ë¬´í‚¤ë‚˜ ëˆŒëŸ¬ì£¼ì„¸ìš”!");
 			sc1 = ScannerUtil.nextLine();
 			return View.SERVICE_QNA;
 		case 3:
 			System.out.println("-------------------------");
-			System.out.println("Á¦¸ñ: ÂÊÁö´Â ¾î¶»°Ô º¸³»³ª¿ä?");
-			System.out.println("´äº¯: ·Î±×ÀÎ ÈÄ > ÂÊÁöÇÔ > ÂÊÁö º¸³»±â¿¡ µé¾î°¡½Ã¸é µË´Ï´Ù.");
+			System.out.println("ì œëª©: ìª½ì§€ëŠ” ì–´ë–»ê²Œ ë³´ë‚´ë‚˜ìš”?");
+			System.out.println("ë‹µë³€: ë¡œê·¸ì¸ í›„ > ìª½ì§€í•¨ > ìª½ì§€ ë³´ë‚´ê¸°ì— ë“¤ì–´ê°€ì‹œë©´ ë©ë‹ˆë‹¤.");
 			System.out.println("--------------------------");
-			System.out.println("³ª°¡·Á¸é ¾Æ¹«Å°³ª ´­·¯ÁÖ¼¼¿ä!");
+			System.out.println("ë‚˜ê°€ë ¤ë©´ ì•„ë¬´í‚¤ë‚˜ ëˆŒëŸ¬ì£¼ì„¸ìš”!");
 			sc1 = ScannerUtil.nextLine();
 			return View.SERVICE_QNA;
 		case 0:

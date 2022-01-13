@@ -64,7 +64,7 @@ public class NoteBoxDAO {
 		connection.close();
 		return executeUpdate;
 	}
-	// º¸³½°Å
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<NoteBoxVO> selectSendNoteBox(String searchId) throws Exception {
 		DriverManager.registerDriver(new OracleDriver());
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb",

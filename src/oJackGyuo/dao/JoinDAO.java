@@ -21,7 +21,7 @@ public class JoinDAO {
 	private JoinDAO() {
 	}
 
-	public int insertCustomer(CustomerVO vo) throws Exception { // customer·Î ¹Ù²Ù±â
+	public int insertCustomer(CustomerVO vo) throws Exception { // customerï¿½ï¿½ ï¿½Ù²Ù±ï¿½
 		DriverManager.registerDriver(new OracleDriver());
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.45.65:1521:xe", "MarryWeb",
 				"7777");
@@ -70,7 +70,6 @@ public class JoinDAO {
 		return list;
 	}
 
-	// rs¸¦ ¹Þ¾Æ¼­ vo·Î ¼¼ÆÃ
 	public CustomerVO makeRsToVo(ResultSet rs) throws SQLException {
 		CustomerVO vo = new CustomerVO();
 

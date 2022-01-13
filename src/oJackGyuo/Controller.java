@@ -2,6 +2,7 @@ package oJackGyuo;
 
 import java.util.Scanner;
 
+import oJackGyuo.service.AdminService;
 import oJackGyuo.service.MainService;
 import oJackGyuo.service.NoteBoxService;
 import oJackGyuo.service.UserService;
@@ -47,24 +48,45 @@ public class Controller {
 			case View.NOTICE:
 				view = MainService.notice();
 				break;
-			case View.SENDNB:
-				view = noteBoxService.send(); 
+			case View.NOTICE_BOARD: // ê³µì§€ ìƒì„¸
+				view = MainService.notiBoardDetail(0);
 				break;
-			case View.NOTEBOX: // ÂÊÁöÇÔ
+			case View.ADMIN_NOTICE_BOARD:
+				view=AdminService.aminNotiBoardDetail(0);
+				break;
+			case View.NOTICE_BOARDLIST:
+				view = MainService.notiBoard();
+				break;
+			case View.ADMIN_NOTICE_BOARDLIST: // ê³µì§€ ëª©ë¡
+				view = AdminService.adminNotiBoard();
+				break;
+			case View.ADMIN_NOTICE_INSERT: // ê³µì§€ ì¶”ê°€
+				view = AdminService.adminNoticeInsert();
+				break;
+			case View.ADMIN_NOTICE_UPDATE: // ê³µì§€ ìˆ˜ì •
+				view = AdminService.adminNotiUpdate();
+				break;
+			case View.ADMIN_NOTICE_DELETE: // ê³µì§€ ì‚­ì œ
+				view = AdminService.adminNotiDelete();
+				break;
+			case View.SENDNB:
+				view = noteBoxService.send();
+				break;
+			case View.NOTEBOX: // ìª½ì§€í•¨
 				view = noteBoxService.viewNoteBox();
 				break;
 			case View.SENDNOTEBOX:
-				view = noteBoxService.viewSendNoteBox();// º¸³½ÂÊÁöÇÔ
+				view = noteBoxService.viewSendNoteBox();
 				break;
 			case View.RECIVENOTEBOX:
-				view = noteBoxService.viewReceiveNoteBox();// ¹ÞÀºÂÊÁöÇÔ
+				view = noteBoxService.viewReceiveNoteBox();
 				break;
 			case View.LOGOUT:
 				view = mainService.logout();
 				break;
 			case View.EXIT:
-				System.out.println("ÀúÈñ ¿ÀÀÛ±³¸¦ ÀÌ¿ëÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù!");
-				System.out.println("ÁÁÀºÇÏ·ç º¸³»½Ã±æ ¹Ù¶ø´Ï´Ù.");
+				System.out.println("ì €í¬ ì˜¤ìž‘êµë¥¼ ì´ìš©í•´ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤ !");
+				System.out.println("ì¢‹ì€í•˜ë£¨ ë³´ë‚´ì‹œê¸¸ ë°”ëžë‹ˆë‹¤.");
 				return;
 
 			}
@@ -75,11 +97,11 @@ public class Controller {
 
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("°áÈ¥Á¤º¸È¸»ç \"¿ÀÀÛ±³\" ¿¡ ¿À½Å°É È¯¿µÇÕ´Ï´Ù !");
+		System.out.println("ê²°í˜¼ì •ë³´íšŒì‚¬ \"ì˜¤ìž‘êµ\" ì— ì˜¤ì‹ ê±¸ í™˜ì˜í•©ë‹ˆë‹¤ !");
 		System.out.println("================================================================");
-		System.out.println("1. È¸¿ø°¡ÀÔ / 2. ·Î±×ÀÎ / 3. ID, PW Ã£±â / 9. °í°´¼¾ÅÍ / 0. ÇÁ·Î±×·¥ Á¾·á");
+		System.out.println("1. íšŒì›ê°€ìž… / 2. ë¡œê·¸ì¸ / 3. ID, PW ì°¾ê¸° / 9. ê³ ê°ì„¼í„° / 0. í”„ë¡œê·¸ëž¨ ì¢…ë£Œ");
 		System.out.println("================================================================");
-		System.out.print("¹øÈ£ÀÔ·Â > ");
+		System.out.print("ë²ˆí˜¸ìž…ë ¥ > ");
 		int homeMenu = Integer.parseInt(ScannerUtil.nextLine());
 
 		switch (homeMenu) {

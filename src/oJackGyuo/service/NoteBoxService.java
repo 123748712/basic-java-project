@@ -28,27 +28,27 @@ public class NoteBoxService {
 
 	public int send() throws Exception {
 
-		System.out.println("Á¦¸ñ > ");
+		System.out.println("ì œëª© > ");
 		String nBTitle = ScannerUtil.nextLine();
-		System.out.println("³»¿ë > ");
+		System.out.println("ë‚´ìš© > ");
 		String nBBody = ScannerUtil.nextLine();
 
-		System.out.println("¹Þ´Â ¾ÆÀÌµð > ");
+		System.out.println("ë°›ëŠ” ID > ");
 		String nBMember = ScannerUtil.nextLine();
 		if (noteBoxDAO.selectMemId(nBMember)) {
 			noteBoxDAO.insertNoteBox(new NoteBoxVO(nBTitle, nBBody, nBMember));
 		} else {
-			System.out.println("¿Ã¹Ù¸£Áö ¾ÊÀº ¾ÆÀÌµðÀÔ´Ï´Ù.");
+			System.out.println("ì˜¬ë°”ë¥´ì§€ ì•Šì€ ì•„ì´ë””ìž…ë‹ˆë‹¤.");
 		}
 		return View.MAIN;
 	}
 
 	public int viewNoteBox() {
 
-		System.out.println("=====================================");
-		System.out.println("1. ¹ÞÀº ÂÊÁö / 2. º¸³½ ÂÊÁö / 3. È¨À¸·Î ÀÌµ¿");
-		System.out.println("======================================");
-		System.out.print("¹øÈ£ ÀÔ·Â >");
+		System.out.println("=================================");
+		System.out.println("1. ë°›ì€ ìª½ì§€ / 2. ë³´ë‚¸ ìª½ì§€ / 3. í™ˆìœ¼ë¡œ ì´ë™");
+		System.out.println("=================================");
+		System.out.print("ë²ˆí˜¸ ìž…ë ¥ >");
 		int noteBoxNum = Integer.parseInt(ScannerUtil.nextLine());
 
 		switch (noteBoxNum) {
@@ -59,7 +59,7 @@ public class NoteBoxService {
 		case 3:
 			return View.MAIN;
 		default:
-			System.out.println("¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+			System.out.println("ë²ˆí˜¸ë¥¼ ìž˜ëª» ìž…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			return View.NOTEBOX;
 		}
 	}
@@ -68,7 +68,7 @@ public class NoteBoxService {
 		System.out.println("=========================================");
 		List<NoteBoxVO> notes = NoteBoxDAO.getInstance()
 				.selectSendNoteBox(LoginedCustomer.getInstance().getLoginedCustomer().getCustomerId());
-		System.out.println("ÂÊÁö ¹øÈ£ |     Á¦¸ñ    |       ³»¿ë");
+		System.out.println("ìª½ì§€ ë²ˆí˜¸ |     ì œëª©    |       ë‚´ìš©");
 		for (NoteBoxVO note : notes) {
 			System.out.println(note.getnBCode() + "      | " + note.getnBTitle() + "     |      " + note.getnBBody());
 		}
@@ -81,7 +81,7 @@ public class NoteBoxService {
 		System.out.println("=========================================");
 		List<NoteBoxVO> notes = NoteBoxDAO.getInstance()
 				.selectReceiveNoteBox(LoginedCustomer.getInstance().getLoginedCustomer().getCustomerId());
-		System.out.println("ÂÊÁö ¹øÈ£ |     Á¦¸ñ    |       ³»¿ë");
+		System.out.println("ìª½ì§€ ë²ˆí˜¸ |     ì œëª©    |       ë‚´ìš©");
 		for (NoteBoxVO note : notes) {
 			System.out.println(note.getnBCode() + "      | " + note.getnBTitle() + "     |      " + note.getnBBody());
 		}
