@@ -176,7 +176,7 @@ public class UserService {
 
 	public int main() {
 		System.out.println("================================================");
-		System.out.println("1. 쪽지발송 / 2. 쪽지함 / 3. 결제 / 4. 공지사항 / 5. 로그아웃");
+		System.out.println("1. 쪽지발송 / 2. 쪽지함 / 3. 공지사항 / 4. 로그아웃");
 		System.out.println("================================================");
 		System.out.print("번호 입력 > ");
 		int mainMenu = Integer.parseInt(scanner.nextLine());
@@ -185,9 +185,9 @@ public class UserService {
 			return View.SENDNB;
 		case 2:
 			return View.NOTEBOX;
-		case 4:
+		case 3:
 			return View.NOTICE;
-		case 5:
+		case 4:
 			return View.LOGOUT;
 		default:
 			System.out.println("번호를 잘못 입력하셨습니다.");
