@@ -212,9 +212,9 @@ public class UserService {
 
 	public int service() {
 		System.out.println("고객센터 화면입니다.");
-		System.out.println("=====================================");
+		System.out.println("=========================================");
 		System.out.println("1. 서비스전화번호 / 2. QnA게시판 / 3. 홈으로 이동");
-		System.out.println("=====================================");
+		System.out.println("=========================================");
 		System.out.print("번호 입력 > ");
 		int homeMenu = Integer.parseInt(ScannerUtil.nextLine());
 		switch (homeMenu) {

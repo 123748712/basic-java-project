@@ -45,9 +45,9 @@ public class NoteBoxService {
 
 	public int viewNoteBox() {
 
-		System.out.println("=================================");
+		System.out.println("===================================");
 		System.out.println("1. 받은 쪽지 / 2. 보낸 쪽지 / 3. 홈으로 이동");
-		System.out.println("=================================");
+		System.out.println("===================================");
 		System.out.print("번호 입력 >");
 		int noteBoxNum = Integer.parseInt(ScannerUtil.nextLine());
 
